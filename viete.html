@@ -27,20 +27,53 @@
 
     <h3>A másodfokú egyenlet</h3>
     <p>A másodfokú egyenlet általános alakja ax<sup>2</sup>+bx+c=0.<br>Megoldó képlet:</p>
-    <p>Ahol a gyök alatt álló kifejezés a diszkrimináns (D), ami meghatározza a valós gyökök számát.<br>Ha Dőlt, akkor nincs megoldás, ha D=0, akkor egy megoldás, ha Dőlt, akkor két megoldás van.</p>
+    <p>Ahol a gyök alatt álló kifejezés a diszkrimináns (D), ami meghatározza a valós gyökök számát.<br>Ha D&lt;0, akkor nincs megoldás, ha D=0, akkor egy megoldás, ha D&gt;0, akkor két megoldás van.</p>
     <div class="keplet"><img src="megoldokeplet.png" alt="Megoldóképlet" title="Megoldóképlet"></div>
     <div id="form">
         <form>
-            <label for="fname">a=</label>
-            <input type="text" id="av" name="av" value="">
-            <label for="lname">b=</label>
-            <input type="text" id="bv" name="bv" value="">
-            <label for="lname">c=</label>
-            <input type="text" id="cv" name="cv" value="">
-            <input type="submit" value="Számol">
+            <label for="aval">a =</label>
+            <input type="number" id="av" name="av" value="">
+            <label for="bval">b =</label>
+            <input type="number" id="bv" name="bv" value="">
+            <label for="cval">c =</label>
+            <input type="number" id="cv" name="cv" value="">
+            <input type="button" onclick="szamol()" value="Számol">
         </form>
     </div>
-    <h3>A valós gyökök száma: <label>?</label></h3>
+    <h3>A valós gyökök száma: <label id="gysz">?</label></h3>
+    <h3><label id="eredmeny"></label></h3>
+
+    <script>
+        function szamol() {
+            const a = parseFloat(document.getElementById("av").value);
+            const b = parseFloat(document.getElementById("bv").value);
+            const c = parseFloat(document.getElementById("cv").value);
+            const eredmeny = document.getElementById("eredmeny");
+
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                gysz.innerText = "Hiba!";
+                return;
+            }
+
+            if (a === 0) {
+                gysz.innerText = "Hiba!";
+                return;
+            }
+
+            const D = b * b - 4 * a * c;
+            /* let szoveg = `D: ${D}\n`; */
+
+            if (D > 0) {
+                gysz.innerText = "2";
+            } else if (D === 0) {
+                gysz.innerText = "1";
+            } else {
+                gysz.innerText = "0";
+            }
+
+            /* eredmeny.innerText = szoveg; */
+        }
+    </script>
 </body>
 
 </html>
